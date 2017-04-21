@@ -1,0 +1,14 @@
+Run un nugget package manager:
+
+Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+*Update the localDB stuff to be the correct server and database names for your local
+
+Add to appsettings.json, use the correct connection string for your local db:
+
+"Data": {
+ "MvcMoviesContext": {
+ "ConnectionString": "Data
+Source=yourDatabaseName;Database=yourDatabasename;Integrated Security=True”
+ }
+} 
