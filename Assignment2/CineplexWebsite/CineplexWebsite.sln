@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5BC3D045-1771-48E2-8381-15D551E91BE7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E3DC619B-8DC5-4488-87EA-AC69EFEDC657}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CineplexWebsite", "src\CineplexWebsite\CineplexWebsite.xproj", "{E495917E-11CE-46C1-824E-589903A3060D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E495917E-11CE-46C1-824E-589903A3060D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E495917E-11CE-46C1-824E-589903A3060D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E495917E-11CE-46C1-824E-589903A3060D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E495917E-11CE-46C1-824E-589903A3060D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E495917E-11CE-46C1-824E-589903A3060D} = {5BC3D045-1771-48E2-8381-15D551E91BE7}
+	EndGlobalSection
+EndGlobal
