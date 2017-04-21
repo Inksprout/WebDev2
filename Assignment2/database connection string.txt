@@ -1,0 +1,1 @@
+Scaffold-DbContext "Data Source=DESKTOP-C1CK48M\CANDYSSQLSERVER;Database=Blogging;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
