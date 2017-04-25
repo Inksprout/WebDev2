@@ -1,4 +1,4 @@
-@model IEnumerable<CineplexWebsite.Models.Movie>
+@model CineplexWebsite.Models.MoviesViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -10,28 +10,8 @@
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LongDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ShortDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Movies) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ImageUrl)
@@ -48,12 +28,29 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MovieId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MovieId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
-            </td>
         </tr>
 }
+    </tbody>
+</table>
+
+<h1> Coming soon</h1>
+<table class="table">
+    <tbody>
+    @foreach (var item in Model.MoviesComingSoon) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LongDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
