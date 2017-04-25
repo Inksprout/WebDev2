@@ -45,3 +45,14 @@ create table CineplexMovie
 	MovieID int not null foreign key references Movie (MovieID),
 	primary key (CineplexID, MovieID)
 );
+
+USE [Cineplex];
+GO
+
+create table RegisteredUser
+(
+	UserId int not null identity primary key,
+	Name nvarchar(max) not null,
+	Email nvarchar(max) not null,
+	Password nvarchar(50) not null
+);
