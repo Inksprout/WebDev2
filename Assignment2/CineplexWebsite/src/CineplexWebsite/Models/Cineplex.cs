@@ -8,6 +8,7 @@ namespace CineplexWebsite.Models
         public Cineplex()
         {
             CineplexMovie = new HashSet<CineplexMovie>();
+            MovieSession = new HashSet<MovieSession>();
         }
 
         public int CineplexId { get; set; }
@@ -17,5 +18,6 @@ namespace CineplexWebsite.Models
         public string ImageUrl { get; set; }
 
         public virtual ICollection<CineplexMovie> CineplexMovie { get; set; }
+        public virtual ICollection<MovieSession> MovieSession { get; set; }
     }
 }

@@ -2,6 +2,10 @@ Run un nugget package manager:
 
 Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 
+small laptop
+Scaffold-DbContext "Server=DESKTOP-C1CK48M\CANDYSSQLSERVER; Database=Cineplex; Trusted_Connection=True; " Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+
 *Update the localDB stuff to be the correct server and database names for your local
 
 Add to appsettings.json, use the correct connection string for your local db:

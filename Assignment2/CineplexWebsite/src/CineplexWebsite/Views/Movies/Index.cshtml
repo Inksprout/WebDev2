@@ -1,4 +1,4 @@
-@model CineplexWebsite.Models.MoviesViewModel
+﻿@model CineplexWebsite.Models.MoviesViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,40 +14,40 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container-fluid">
-        <h1>Movies</h1>
+<div class="container-fluid">
+    <h1>Movies</h1>
         
-            @foreach (var item in Model.Movies)
-            {
-                    <div class="row well" >
-                        <div class="col-sm-4">
-                            @Html.DisplayFor(modelItem => item.ImageUrl)<br />
-                        </div>
-                        <div class="col-sm-8">
-                            @Html.DisplayFor(modelItem => item.LongDescription)<br />
-                            @Html.DisplayFor(modelItem => item.Price)<br />
-                            @Html.DisplayFor(modelItem => item.ShortDescription) <br />
-                            @Html.DisplayFor(modelItem => item.Title)<br />
-                        </div>
-                    </div>
-            }
-
-            <h1> Coming soon</h1>
-
-        @foreach (var item in Model.MoviesComingSoon)
-            {
-            <div class="row well">
-                <div class="col-sm-4">
-                    @Html.DisplayFor(modelItem => item.ImageUrl)<br />
-                </div>
-                <div class="col-sm-8">
-                    @Html.DisplayFor(modelItem => item.LongDescription)<br />
-                    @Html.DisplayFor(modelItem => item.LongDescription)<br />
-                    @Html.DisplayFor(modelItem => item.ShortDescription) <br />
-                    @Html.DisplayFor(modelItem => item.Title)<br />
-                </div>
+    @foreach (var item in Model.Movies)
+    {
+        <div class="row well" >
+            <div class="col-sm-4">
+                @Html.DisplayFor(modelItem => item.ImageUrl)<br />
             </div>
-        }
-    </div>
-    </body>
+            <div class="col-sm-8">
+                @Html.DisplayFor(modelItem => item.LongDescription)<br />
+                @Html.DisplayFor(modelItem => item.Price)<br />
+                @Html.DisplayFor(modelItem => item.ShortDescription) <br />
+                @Html.DisplayFor(modelItem => item.Title)<br />
+            </div>
+        </div>
+    }
+
+    <h1> Coming soon</h1>
+
+    @foreach (var item in Model.MoviesComingSoon)
+    {
+        <div class="row well">
+            <div class="col-sm-4">
+                @Html.DisplayFor(modelItem => item.ImageUrl)<br />
+            </div>
+            <div class="col-sm-8">
+                @Html.DisplayFor(modelItem => item.LongDescription)<br />
+                @Html.DisplayFor(modelItem => item.LongDescription)<br />
+                @Html.DisplayFor(modelItem => item.ShortDescription) <br />
+                @Html.DisplayFor(modelItem => item.Title)<br />
+            </div>
+        </div>
+    }
+</div>
+</body>
 </html>
