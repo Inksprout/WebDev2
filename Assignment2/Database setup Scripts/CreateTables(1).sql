@@ -49,10 +49,10 @@ create table CineplexMovie
 USE [Cineplex];
 GO
 
-create table RegisteredUser
+create table MovieSession
 (
-	UserId int not null identity primary key,
-	Name nvarchar(max) not null,
-	Email nvarchar(max) not null,
-	Password nvarchar(50) not null
+	CineplexID int not null foreign key references Cineplex (CineplexID),
+	MovieID int not null foreign key references Movie (MovieID),
+	MovieSessionID int not null identity primary key,
+	SessionTime datetime not null,
 );
