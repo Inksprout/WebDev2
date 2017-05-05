@@ -1,0 +1,50 @@
+@model CineplexWebsite.Models.MovieSession
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>MovieSession</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="MovieSessionId" />
+        <div class="form-group">
+            <label asp-for="CineplexId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="CineplexId" class="form-control" asp-items="ViewBag.CineplexId"></select>
+                <span asp-validation-for="CineplexId" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MovieId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="MovieId" class="form-control" asp-items="ViewBag.MovieId"></select>
+                <span asp-validation-for="MovieId" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SessionTime" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="SessionTime" class="form-control" />
+                <span asp-validation-for="SessionTime" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
