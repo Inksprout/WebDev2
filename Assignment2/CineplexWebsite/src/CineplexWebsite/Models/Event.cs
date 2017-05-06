@@ -5,10 +5,10 @@ namespace CineplexWebsite.Models
 {
     public class Event
     {
-        [Required, Display(Name = "Your name")]
-        public string FromName { get; set; }
-        [Required, Display(Name = "Your email"), EmailAddress]
-        public string FromEmail { get; set; }
+        [Required]
+        public string senderName { get; set; }
+        [Required, EmailAddress]
+        public string senderEmail { get; set; }
         [Required]
         public string Message { get; set; }
     }

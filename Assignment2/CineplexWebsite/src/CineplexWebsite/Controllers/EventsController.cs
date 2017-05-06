@@ -22,18 +22,18 @@ namespace CineplexWebsite.Controllers
             {
                 var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
                 var message = new MailMessage();
-                message.To.Add(new MailAddress("abccineplex@outlook.com"));  // replace with valid value 
-                message.From = new MailAddress("abccineplex@outlook.com");  // replace with valid value
+                message.To.Add(new MailAddress("abccineplex@outlook.com"));  // receiver email
+                message.From = new MailAddress("abccineplex@outlook.com");  // sennder email
                 message.Subject = "Your email subject";
-                message.Body = string.Format(body, model.FromName, model.FromEmail, model.Message);
+                message.Body = string.Format(body, model.senderName, model.senderEmail, model.Message);
                 message.IsBodyHtml = true;
 
                 using (var smtp = new SmtpClient())
                 {
                     var credential = new NetworkCredential
                     {
-                        UserName = "abccineplex@outlook.com",  // replace with valid value
-                        Password = "abc@cineplex"  // replace with valid value
+                        UserName = "abccineplex@outlook.com",  //sender email authentication
+                        Password = "abc@cineplex"  
                     };
                     smtp.Credentials = credential;
                     smtp.Host = "smtp-mail.outlook.com";
