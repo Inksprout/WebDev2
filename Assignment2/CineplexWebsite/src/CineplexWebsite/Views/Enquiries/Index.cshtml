@@ -1,41 +1,38 @@
-@model IEnumerable<CineplexWebsite.Models.Enquiry>
+@model CineplexWebsite.Models.Enquiry
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Contac Us";
 }
 
-<h2>Index</h2>
+<h2>Contac Us</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Message)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Message)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EnquiryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EnquiryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EnquiryId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Enquiry</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Email" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Message" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="Message" class="form-control" rows="10"></textarea>
+                <span asp-validation-for="Message" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+@**@
+@*@section Scripts {*@
+@*    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@
+@*}*@

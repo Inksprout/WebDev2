@@ -19,9 +19,14 @@ namespace CineplexWebsite.Controllers
         }
 
         // GET: Enquiries
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> List()
         {
             return View(await _context.Enquiry.ToListAsync());
+        }
+
+        public ActionResult Sent()
+        {
+            return View();
         }
 
         // GET: Enquiries/Details/5
@@ -42,7 +47,7 @@ namespace CineplexWebsite.Controllers
         }
 
         // GET: Enquiries/Create
-        public IActionResult Create()
+        public IActionResult Index()
         {
             return View();
         }
@@ -52,13 +57,13 @@ namespace CineplexWebsite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EnquiryId,Email,Message")] Enquiry enquiry)
+        public async Task<IActionResult> Index([Bind("EnquiryId,Email,Message")] Enquiry enquiry)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(enquiry);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Sent");
             }
             return View(enquiry);
         }
