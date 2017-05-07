@@ -57,7 +57,7 @@ namespace CineplexWebsite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index([Bind("EnquiryId,Email,Message")] Enquiry enquiry)
+        public async Task<IActionResult> Create([Bind("EnquiryId,Email,Message")] Enquiry enquiry)
         {
             if (ModelState.IsValid)
             {
