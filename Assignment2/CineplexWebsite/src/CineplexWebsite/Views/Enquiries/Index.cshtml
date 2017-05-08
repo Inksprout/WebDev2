@@ -3,35 +3,35 @@
 @{
     ViewData["Title"] = "Contac Us";
 }
-
-<h2>Contac Us</h2>
-
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <h4>Enquiry</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Email" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger" />
+<div class="title" style="height:100px; color: #fff; background-color:#B22222; padding: 10px; margin-top:10px;">
+    <h2 style="text-align: center;">Ask now if you have any question</h2>
+</div>
+<div class="centre" style="color: #000; background-color:#F5F5F5;padding: 20px;">
+    <form asp-action="Create" style="margin:auto; width: 50%;">
+        <div class="form-horizontal" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Email" class="form-control"/>
+                    <span asp-validation-for="Email" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <textarea asp-for="Message" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="Message" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-default btn-md" style="background-color: #8B0000; color: #fff;" />
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Message" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <textarea asp-for="Message" class="form-control" rows="10"></textarea>
-                <span asp-validation-for="Message" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-</form>
+    </form>
+</div>
 @**@
 @*@section Scripts {*@
 @*    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@
