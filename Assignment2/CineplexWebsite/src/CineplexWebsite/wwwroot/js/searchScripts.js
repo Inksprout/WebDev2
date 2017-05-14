@@ -55,10 +55,6 @@ function requestMovieSession() {
 
             searchResults.empty();
 
-            console.log("success");
-            console.log(response.result.value[0]);
-            searchResults.text(response.result.value[0]);
-
             response.result.value.forEach(function (result) {
                 var resultDisplay = createSessionResult(result);
 

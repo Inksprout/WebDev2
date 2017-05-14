@@ -23,5 +23,70 @@
 .movieImage {
     height: 250px;
     border-radius: 25px;
+}
 
+.customJumbo {
+    font-family: "Times New Roman", Times, serif;
+    margin-top: 50px;
+    border-style: solid;
+    border-color: goldenrod;
+    background-color: #fff !important;
+}
+
+.bigImage {
+    width: 700px;
+    height: 450px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    margin: 0 auto;
+
+}
+
+#blurb {
+    font-size: 25px;
+    width: 80%;
+    padding-bottom: 25px;
+    text-align: center;
+    margin: 0 auto;
+    margin: 0 auto;
+}
+
+.toggleLinks {
+    width: 300px;
+    font-size: 40px;
+    padding: 25px;
+}
+
+.toggleLinks:hover {
+    background-color: darkred;
+    color: #ffffff;    
+}
+
+#modern {
+    display: none;
+}
+
+#luxury {
+    display: flex;
+}
+
+#latest {
+    display: none;
+}
+
+#snack {
+    display: none;
+}
+
+.interactivePanel {
+    display: flex;
+    justify-content: space-between;
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+    text-align: center;
+    align-content: center;
 }
