@@ -4,32 +4,52 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h1>Sessions</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SessionTime)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SessionTime)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MovieSessionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MovieSessionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MovieSessionId">Delete</a>
-            </td>
-        </tr>
+<form action="#">
+    movie name: <input id="movieTitleInput" type="text" name="fname"><br>   
+    <input id="movieSearchButton" type="submit" value="Submit">
+</form>
+
+<form action="#">
+    cinema name: <input id="cinemaInput" type="text" name="fname"><br>
+    <input id="cinemaSearchButton" type="submit" value="Submit">
+</form>
+
+
+
+<div id="searchResults">
+
+    @foreach (var item in Model)
+    {
+        <div class="sessionResult">
+            
+            
+            <h1 class="movieTitle"> @Html.DisplayFor(modelItem => item.Movie.Title)</h1> 
+
+            <div class="info">
+                <div class="left">
+                    <img class="movieImage" src=@Html.DisplayFor(modelItem => item.Movie.ImageUrl) />  
+                </div>
+                <div class="right">
+                    <p class="description"> @Html.DisplayFor(modelItem => item.Movie.ShortDescription) </p>
+                    <p class="cinema"> @Html.DisplayFor(modelItem => item.Cineplex.Location) </p>
+                    <p class="time"> @Html.DisplayFor(modelItem => item.SessionTime) </p>
+                    <a class="button" href="#">Buy Tickets</a>
+                </div>
+               
+            </div> 
+            
+            
+        </div>
+
+    }
+
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="@Url.Content("/js/searchScripts.js")"></script>
 }
-    </tbody>
-</table>
+
+
+

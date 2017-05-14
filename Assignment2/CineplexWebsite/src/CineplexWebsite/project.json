@@ -1,5 +1,6 @@
-﻿{
+{
   "dependencies": {
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
@@ -37,7 +38,11 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "Moq": "4.7.10",
+    "Newtonsoft.Json": "10.0.2",
+    "xunit": "2.2.0",
+    "xunit.runner.visualstudio": "2.2.0"
   },
 
   "tools": {
@@ -55,7 +60,7 @@
   },
 
   "frameworks": {
-    "net461": { }
+    "net461": {}
   },
 
   "buildOptions": {
@@ -75,5 +80,6 @@
   "scripts": {
     "prepublish": [ "bower install", "dotnet bundle" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
-  }
+  },
+  "testRunner": "xunit"
 }

@@ -55,6 +55,7 @@
             <div class="row well">
                 <div class="col-sm-4">
                     @Html.DisplayFor(modelItem => item.ImageUrl)<br />
+                    <img src= @item.ImageUrl runat="server" /> 
                 </div>
                 <div class="col-sm-8">
                     @Html.DisplayFor(modelItem => item.LongDescription)<br />

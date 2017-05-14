@@ -1,0 +1,27 @@
+﻿
+/* Movie session styles */
+
+.sessionResult {
+    background-color: lightgray;
+    border-radius: 25px;
+    margin-top: 20px;
+    padding: 15px;
+
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    padding-left: 25px;
+    font-size: 20px;
+}
+.movieImage {
+    height: 250px;
+    border-radius: 25px;
+
+}
