@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CineplexWebsite.Services;
+using CineplexWebsite.Services.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +33,13 @@ namespace CineplexWebsite
             // Add framework services.
             services.AddMvc();
             services.AddDbContext<Models.CineplexContext>(options => options.UseSqlServer(Configuration["Data:Cineplex:ConnectionString"]));
+
+            //Setup DI
+            services.AddScoped<ISearchService, SearchService>();
+
+            services.AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling =
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
