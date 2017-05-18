@@ -1,4 +1,5 @@
-@model CineplexWebsite.Models.MovieSession
+@using CineplexWebsite.Models
+@model CineplexWebsite.Models.MovieSessionDetailViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -6,19 +7,68 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>MovieSession</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SessionTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SessionTime)
-        </dd>
-    </dl>
+<div class="sessionResult">
+            
+            
+    <h1 class="movieTitle"> @Model.Movie.Title</h1> 
+
+    <div class="info">
+        <div class="left">
+            <img class="movieImage" src=/@Model.Movie.ImageUrl />  
+        </div>
+        <div class="right">
+            <p class="description"> @Model.Movie.LongDescription</p>
+            <p class="cinema"> @Model.Cineplex.Location</p>
+            <p class="time"> @Model.MovieSession.SessionTime</p>
+        </div>
+               
+    </div> 
+            
+            
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.MovieSessionId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="wrapper">
+    <div class="container">
+        <div id="seat-map">
+
+
+            <div class="front-indicator">Front</div>
+        </div>
+        <div class="booking-details">
+            <h2>Booking Details</h2>
+
+            <h3> Selected Seats (<span id="counter">0</span>):</h3>
+            <ul id="selected-seats"></ul>
+
+            Total: <b>$<span id="total">0</span></b>
+
+            <button class="add-button", id="add-to-cart-button">Add</button>
+
+            <div id="legend"></div>
+        </div>
+    </div>
 </div>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/js/jquery.seat-charts.js"></script>
+
+<script src="/js/SeatPicker.js"> </script>
+
+
+<script>
+    function addSession(sessionGuid) {
+
+        $.ajax({
+            type: "Post",
+            url: "/MovieSession/save/",
+            contentType: 'application/json',
+            data: JSON.stringify(SOMETHING),
+            success: function(response) {
+                console.log("yay");
+            },
+            error: function() {
+                console.error("Rip in peace");
+            }
+        });
+    }
+</script>

@@ -35,7 +35,7 @@
                     <p class="description"> @Html.DisplayFor(modelItem => item.Movie.ShortDescription) </p>
                     <p class="cinema"> @Html.DisplayFor(modelItem => item.Cineplex.Location) </p>
                     <p class="time"> @Html.DisplayFor(modelItem => item.SessionTime) </p>
-                    <a class="button" href="#">Buy Tickets</a>
+                    <a class="button" href="/MovieSessions/Details/@Html.DisplayFor(modelItem => item.MovieSessionId)">Buy Tickets</a>
                 </div>
                
             </div> 

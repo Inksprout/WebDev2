@@ -34,6 +34,11 @@ namespace CineplexWebsite
             services.AddMvc();
             services.AddDbContext<Models.CineplexContext>(options => options.UseSqlServer(Configuration["Data:Cineplex:ConnectionString"]));
 
+            //use sessions
+            services.AddSession(options =>
+            {
+                options.CookieHttpOnly = true;
+            });
             //Setup DI
             services.AddScoped<ISearchService, SearchService>();
 
@@ -58,6 +63,7 @@ namespace CineplexWebsite
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseSession();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

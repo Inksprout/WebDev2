@@ -17,8 +17,9 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>
     </environment>
-    
-
+  
+    <link rel="stylesheet" href="~/css/jquery.seat-charts.css" />
+    <link rel="stylesheet" href="~/css/checkout.css" />
     <script src="/lib/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
@@ -41,6 +42,8 @@
                     <li><a asp-area="" asp-controller="Events" asp-action="Index">Corporate Events</a></li>
                     <li><a asp-area="" asp-controller="MovieSessions" asp-action="Index">Sessions</a></li>
                     <li><a asp-area="" asp-controller="Enquiries" asp-action="Index">Contact Us</a></li>
+                    
+                    <li><a asp-area="" asp-controller="Cart" asp-action="Index">Cart</a></li>
                 </ul>
             </div>
         </div>

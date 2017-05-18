@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CineplexWebsite.Models;
+using Microsoft.AspNetCore.Http;
+using CineplexWebsite.Extensions;
 
 namespace CineplexWebsite.Controllers
 {
@@ -33,127 +35,27 @@ namespace CineplexWebsite.Controllers
                 return NotFound();
             }
 
-            var movieSession = await _context.MovieSession.SingleOrDefaultAsync(m => m.MovieSessionId == id);
-            if (movieSession == null)
-            {
-                return NotFound();
-            }
+            var movieSession = await _context.MovieSession.FirstOrDefaultAsync(m => m.MovieSessionId == id);
+            var movie = await _context.Movie.FirstOrDefaultAsync(m => m.MovieId == movieSession.MovieId);
+            var cineplex = await _context.Cineplex.FirstOrDefaultAsync(c => c.CineplexId == movieSession.CineplexId);
 
-            return View(movieSession);
+            return View(new MovieSessionDetailViewModel
+            {
+                MovieSession = movieSession,
+                Movie = movie,
+                Cineplex = cineplex
+            });
         }
 
-        // GET: MovieSessions/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Save([FromBody] MovieSessionModel movieSession)
         {
-            ViewData["CineplexId"] = new SelectList(_context.Cineplex, "CineplexId", "Location");
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription");
-            return View();
-        }
 
-        // POST: MovieSessions/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MovieSessionId,CineplexId,MovieId,SessionTime")] MovieSession movieSession)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(movieSession);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewData["CineplexId"] = new SelectList(_context.Cineplex, "CineplexId", "Location", movieSession.CineplexId);
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", movieSession.MovieId);
-            return View(movieSession);
-        }
-
-        // GET: MovieSessions/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var movieSession = await _context.MovieSession.SingleOrDefaultAsync(m => m.MovieSessionId == id);
-            if (movieSession == null)
-            {
-                return NotFound();
-            }
-            ViewData["CineplexId"] = new SelectList(_context.Cineplex, "CineplexId", "Location", movieSession.CineplexId);
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", movieSession.MovieId);
-            return View(movieSession);
-        }
-
-        // POST: MovieSessions/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MovieSessionId,CineplexId,MovieId,SessionTime")] MovieSession movieSession)
-        {
-            if (id != movieSession.MovieSessionId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(movieSession);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!MovieSessionExists(movieSession.MovieSessionId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index");
-            }
-            ViewData["CineplexId"] = new SelectList(_context.Cineplex, "CineplexId", "Location", movieSession.CineplexId);
-            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", movieSession.MovieId);
-            return View(movieSession);
-        }
-
-        // GET: MovieSessions/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var movieSession = await _context.MovieSession.SingleOrDefaultAsync(m => m.MovieSessionId == id);
-            if (movieSession == null)
-            {
-                return NotFound();
-            }
-
-            return View(movieSession);
-        }
-
-        // POST: MovieSessions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var movieSession = await _context.MovieSession.SingleOrDefaultAsync(m => m.MovieSessionId == id);
-            _context.MovieSession.Remove(movieSession);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
-        private bool MovieSessionExists(int id)
-        {
-            return _context.MovieSession.Any(e => e.MovieSessionId == id);
+            movieSession.SessionId = Guid.NewGuid();
+            var existingSession = HttpContext.Session.Get<ICollection<MovieSessionModel>>("session-cart") ?? new List<MovieSessionModel>();
+            HttpContext.Session.Remove("session-cart");
+            existingSession.Add(movieSession);
+            HttpContext.Session.Set("session-cart", existingSession);
+            return Ok();
         }
     }
 }
