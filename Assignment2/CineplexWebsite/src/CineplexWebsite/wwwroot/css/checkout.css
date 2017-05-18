@@ -1,0 +1,24 @@
+﻿body {
+}
+.front-indicator {
+    width: 200px;
+    background-color: lightcoral;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px auto;
+}
+
+div.seatCharts-cell {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 7px;
+}
+
+div.seatCharts-seat.selected {
+    background-color: lightseagreen;
+}

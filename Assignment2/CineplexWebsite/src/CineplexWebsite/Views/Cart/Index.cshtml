@@ -1,0 +1,36 @@
+﻿@model ICollection<CineplexWebsite.Models.MovieSessionModel>
+
+@{
+    ViewData["Title"] = "Cart";
+}
+<p>Hi!</p>
+@if (Model != null)
+{
+    foreach (var session in Model)
+     {
+         <p>@session.SessionId</p>
+         <button onclick="removeSession('@session.SessionId')" >I have text yay</button>
+     }
+} else
+{
+    <p>You have no sessions, plz book one you cheap bastard</p>
+}
+
+<script>
+    function removeSession(sessionGuid) {
+
+        $.ajax({
+            type: "DELETE",
+            url: "/cart/delete/",
+            contentType: 'application/json',
+            data: JSON.stringify(sessionGuid),
+            success: function(response) {
+                console.log("yay");
+            },
+            error: function() {
+                console.error("Rip in peace");
+            }
+        });
+    }
+</script>
+
