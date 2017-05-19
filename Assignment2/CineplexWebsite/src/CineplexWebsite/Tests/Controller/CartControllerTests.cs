@@ -40,6 +40,23 @@ namespace CineplexWebsite.Tests.Controller
         }
 
         [Fact]
+        public void Index_CartHasItems_ReturnViewWithSessionsInCart()
+        {
+            //Arrange
+            _sessionRepositoryMock.Setup(s => s.Get<ICollection<MovieSessionModel>>(It.IsAny<string>()))
+                .Returns(new List<MovieSessionModel>
+                {
+                    new MovieSessionModel()
+                });
+
+            //Act
+            var result = _sut.Index() as ViewResult;
+            var model = (List<MovieSessionModel>)result.Model;
+            //Assert
+            Assert.True(model.Count == 1);
+        }
+
+        [Fact]
         public void Delete_ItemsAreInTheCart_ReturnsStatusOk()
         {
             //Arrange
@@ -63,6 +80,34 @@ namespace CineplexWebsite.Tests.Controller
             var result = _sut.Delete(sessionToDelete) as OkResult;
             //Assert
             Assert.True(result.StatusCode == (int) HttpStatusCode.OK);
+        }
+
+
+        [Fact]
+        public void Delete_ItemToDeleteDoesNotExist_ReturnsStatusOk()
+        {
+            //Arrange
+            var session1 = Guid.NewGuid();
+            var session2 = Guid.NewGuid();
+            var sessionNotFound = Guid.NewGuid();
+
+            _sessionRepositoryMock.Setup(s => s.Get<ICollection<MovieSessionModel>>(It.IsAny<string>()))
+                .Returns(new List<MovieSessionModel>
+                {
+                    new MovieSessionModel
+                    {
+                        SessionId = session1
+                    },
+                    new MovieSessionModel
+                    {
+                        SessionId = session2
+                    }
+                });
+
+            //Act
+            var result = _sut.Delete(sessionNotFound) as NotFoundResult;
+            //Assert
+            Assert.True(result.StatusCode == (int)HttpStatusCode.NotFound);
         }
     }
 }

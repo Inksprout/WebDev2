@@ -7,6 +7,7 @@ using CineplexWebsite.Extensions;
 using CineplexWebsite.Repositories;
 using CineplexWebsite.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace CineplexWebsite.Controllers
 {
@@ -29,9 +30,24 @@ namespace CineplexWebsite.Controllers
         {
             var existingSessions = _sessionRepository.Get<ICollection<MovieSessionModel>>("sessions-cart");
             _sessionRepository.Remove("sessions-cart");
-            var newSessions = existingSessions.Where(s => s.SessionId != sessionToDelete).ToList();
-            _sessionRepository.Set<ICollection<MovieSessionModel>>("sessions-cart", newSessions);
-            return Ok();
+
+            var deletedSession = false;
+            foreach (var session in existingSessions)
+            {
+                if (session.SessionId == sessionToDelete)
+                {
+                    deletedSession = true;
+                    break;
+                }
+            }
+            if (deletedSession == true)
+            {
+                var newSessions = existingSessions.Where(s => s.SessionId != sessionToDelete).ToList();
+                _sessionRepository.Set<ICollection<MovieSessionModel>>("sessions-cart", newSessions);
+                return Ok();
+            }
+            _sessionRepository.Set<ICollection<MovieSessionModel>>("sessions-cart", existingSessions);
+            return NotFound();
         }
     }
 }
