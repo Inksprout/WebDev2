@@ -3,13 +3,18 @@ var seatMap = $('#seat-map');
 var total = 0;
 
 $(document).ready(function () {
+    //get the session data from the view
+    var cinemaName = document.getElementById('cinema').value;
+    var movieName = document.getElementById('title').value;
+    var sessionTime = document.getElementById('sessionTime').value;
+
     //create the Cineplex namespace to store movie session data
     if (window.CINEPLEX === undefined || window.CINEPLEX === null) window.CINEPLEX = {};
-
     //create a variable to track the sessions
     window.CINEPLEX.session = {
-        movieName: "",
-        sessionTime: "",
+        movieName: movieName,
+        cinemaName: cinemaName,
+        sessionTime: sessionTime,
         seats: []
     };
 
@@ -27,7 +32,7 @@ $(document).ready(function () {
                     child: 20,
                     price: 0,
                     classes: 'seat', //your custom CSS class
-                    category: 'adult'
+                    category: ''
                 }
 
             },
@@ -35,7 +40,7 @@ $(document).ready(function () {
                 top: false,
                 getLabel: function (character, row, column) {
                     return firstSeatLabel++;
-                },
+                }
             },
             legend: {
                 node: $('#legend'),
@@ -74,7 +79,7 @@ $(document).ready(function () {
 
                         seat.data().price = $('#price').val();
 
-                        if (seat.data().price === 45) {
+                        if (seat.data().price === '45') {
                             seat.data().category = "adult";
                         } else {
                             seat.data().category = "child";
@@ -162,10 +167,19 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify(window.CINEPLEX.session),
             success: function (response) {
-                console.log("yay");
+                $("#hideSeatPicker").remove();
+
+                var wrapper = $('#wrapper');
+                var success = $("<p />",
+                    {
+                        "class": "successMessage",
+                        text: "Tickets added to cart!"
+                    });
+
+                success.appendTo(wrapper);
             },
             error: function () {
-                console.error("Rip in peace");
+                console.error("something didn't work");
             }
         });
     });

@@ -17,7 +17,7 @@ namespace CineplexWebsite.Controllers
 
         public MovieSessionsController(CineplexContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
         // GET: MovieSessions

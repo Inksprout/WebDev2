@@ -22,3 +22,88 @@ div.seatCharts-cell {
 div.seatCharts-seat.selected {
     background-color: lightseagreen;
 }
+
+.successMessage {
+    font-size: 20px;
+    text-align: center;
+    align-content: center;
+    background-color: lightgreen;
+    margin: 20px auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 50%;
+    border-radius: 25px;
+}
+
+div.seatCharts-cell {
+    color: black;
+}
+
+div.seatCharts-seat {
+    color: white;
+}
+
+.checkout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-button {
+    margin-left: 20px;
+    border-color: green;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: green;
+    background-color: transparent;
+    font-size: 20px;
+}
+
+.remove-button {
+    margin-left: 20px;
+    border-color: red;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: red;
+    background-color: transparent;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.checkoutText {
+    display:flex;
+    flex-direction: row;
+    font-size: 20px;
+}
+.selectedSeats {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+.checkout-wrapper {
+    width: 100%;
+}
+
+.cartSessions {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.cartSession {
+    background-color: gainsboro;
+    margin-top: 20px;
+    padding: 15px; 
+}
+
+.sessionTotal {
+    font-size: 30px;
+
+}

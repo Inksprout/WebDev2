@@ -3,17 +3,44 @@
 @{
     ViewData["Title"] = "Cart";
 }
-<p>Hi!</p>
-@if (Model != null)
+
+<h1>Your Cart</h1>
+@if (Model != null && Model.Count>0)
 {
-    foreach (var session in Model)
-     {
-         <p>@session.SessionId</p>
-         <button onclick="removeSession('@session.SessionId')" >I have text yay</button>
-     }
-} else
+    int transactionTotal = 0;
+    <div class="cartSessions">
+        @foreach (var session in Model)
+        {
+            
+                int sessionTotal = 0;
+                <h2>@session.MovieName</h2>
+                <h3>@session.CinemaName</h3>
+                <h3>@session.SessionTime</h3>
+                <p>Tickets x @session.Seats.Count</p>
+                
+                for (int i = 0; i < @session.Seats.Count; i++)
+                {
+                sessionTotal += Int32.Parse(@session.Seats.ElementAt(i).Price);
+
+                <p>@session.Seats.ElementAt(i).SeatType ticket: $@session.Seats.ElementAt(i).Price</p>
+                }
+                <h4 class="sessionTotal">total = $@sessionTotal</h4>
+                transactionTotal += sessionTotal;
+
+                <button class="remove-button" onclick="removeSession('@session.SessionId')" >Remove</button>
+
+        
+            
+        }
+        <h2>Checkout now: $@transactionTotal</h2>
+        <button class="add-button">Checkout</button>
+    </div>
+   
+    
+}
+else
 {
-    <p>You have no sessions, plz book one you cheap bastard</p>
+    <p>Oops! Your cart is empty. <a href="/MovieSessions"> Book some tickets</a></p>
 }
 
 <script>
@@ -26,9 +53,10 @@
             data: JSON.stringify(sessionGuid),
             success: function(response) {
                 console.log("yay");
+                location.reload();
             },
             error: function() {
-                console.error("Rip in peace");
+                console.error("Something went wrong");
             }
         });
     }

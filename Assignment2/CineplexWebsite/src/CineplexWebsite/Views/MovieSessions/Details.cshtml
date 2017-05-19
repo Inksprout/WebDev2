@@ -4,12 +4,12 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-<h2>Details</h2>
-
 <div class="sessionResult">
             
-            
+    <input type="hidden" value="@Model.Movie.Title"  id="title"/>
+    <input type="hidden" value="@Model.Cineplex.Location"  id="cinema"/>
+    <input type="hidden" value="@Model.MovieSession.SessionTime" id="sessionTime" />
+
     <h1 class="movieTitle"> @Model.Movie.Title</h1> 
 
     <div class="info">
@@ -27,26 +27,32 @@
             
 </div>
 
-<div class="wrapper">
-    <div class="container">
-        <div id="seat-map">
+<div class="checkout-wrapper" id="wrapper">
+    <div id="hideSeatPicker">
+        <div class="checkout-container">
+            <h2>Select your seats</h2>
+            <div id="seat-map">
 
 
-            <div class="front-indicator">Front</div>
-        </div>
-        <div class="booking-details">
-            <h2>Booking Details</h2>
+                <div class="front-indicator">Front</div>
+            </div>
+            <div class="booking-details">
 
-            <h3> Selected Seats (<span id="counter">0</span>):</h3>
-            <ul id="selected-seats"></ul>
 
-            Total: <b>$<span id="total">0</span></b>
+                <h3> Selected Seats (<span id="counter">0</span>):
+                </h3>
+                <ul class="selectedSeats" id="selected-seats"></ul>
 
-            <button class="add-button", id="add-to-cart-button">Add</button>
+                <p class="checkoutText">
+                    Total: <b>$<span id="total">0</span></b>
+                    <button class="add-button", id="add-to-cart-button">Add</button>
+                </p>
 
-            <div id="legend"></div>
+                <div id="legend"></div>
+            </div>
         </div>
     </div>
+   
 </div>
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
