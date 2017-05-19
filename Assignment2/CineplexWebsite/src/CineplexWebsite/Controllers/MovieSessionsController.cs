@@ -51,10 +51,10 @@ namespace CineplexWebsite.Controllers
         {
 
             movieSession.SessionId = Guid.NewGuid();
-            var existingSession = HttpContext.Session.Get<ICollection<MovieSessionModel>>("session-cart") ?? new List<MovieSessionModel>();
-            HttpContext.Session.Remove("session-cart");
+            var existingSession = HttpContext.Session.Get<ICollection<MovieSessionModel>>("sessions-cart") ?? new List<MovieSessionModel>();
+            HttpContext.Session.Remove("sessions-cart");
             existingSession.Add(movieSession);
-            HttpContext.Session.Set("session-cart", existingSession);
+            HttpContext.Session.Set<ICollection<MovieSessionModel>>("sessions-cart", existingSession);
             return Ok();
         }
     }

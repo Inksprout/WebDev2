@@ -45,7 +45,7 @@ $(document).ready(function () {
                 ]
             },
             click: function () {
-                if (this.status() == 'available') {
+                if (this.status() === 'available') {
 
                     var seat = this;
 
@@ -121,7 +121,7 @@ $(document).ready(function () {
                     return 'selected';
                   
 
-                } else if (this.status() == 'selected') {
+                } else if (this.status() === 'selected') {
                     //update the counter
                     $counter.text(sc.find('selected').length - 1);
                     //and total
@@ -138,7 +138,7 @@ $(document).ready(function () {
 
                     //seat has been vacated
                     return 'available';
-                } else if (this.status() == 'unavailable') {
+                } else if (this.status() === 'unavailable') {
                     //seat has been already booked
                     return 'unavailable';
                 } else {

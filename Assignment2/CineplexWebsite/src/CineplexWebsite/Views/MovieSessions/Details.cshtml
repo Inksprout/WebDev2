@@ -53,22 +53,3 @@
 <script src="/js/jquery.seat-charts.js"></script>
 
 <script src="/js/SeatPicker.js"> </script>
-
-
-<script>
-    function addSession(sessionGuid) {
-
-        $.ajax({
-            type: "Post",
-            url: "/MovieSession/save/",
-            contentType: 'application/json',
-            data: JSON.stringify(SOMETHING),
-            success: function(response) {
-                console.log("yay");
-            },
-            error: function() {
-                console.error("Rip in peace");
-            }
-        });
-    }
-</script>
