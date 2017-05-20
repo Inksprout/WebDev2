@@ -9,7 +9,7 @@ namespace CineplexWebsite.Services.Contracts
 {
     public interface ISearchService
     {
-        Task<IActionResult> GetSessionsByMovieTitle(string movieTitle);
-        Task<IActionResult> GetSessionsByCinema(string cinema);
+        ICollection<MovieSession> GetSessionsByMovieTitle(string movieTitle);
+        ICollection<MovieSession> GetSessionsByCinema(string cinema);
     }
 }

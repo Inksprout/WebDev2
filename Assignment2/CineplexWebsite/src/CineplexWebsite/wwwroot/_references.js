@@ -1,5 +1,7 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="js/jquery.seat-charts.js" />
 /// <reference path="js/searchscripts.js" />
+/// <reference path="js/SeatPicker.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />

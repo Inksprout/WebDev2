@@ -29,7 +29,7 @@ function requestCinemaSession() {
         success: function(response) {
 
             searchResults.empty();
-            response.result.value.forEach(function (result) {
+            response.forEach(function (result) {
                 var resultDisplay = createSessionResult(result);
 
                 resultDisplay.appendTo(searchResults);
@@ -55,7 +55,7 @@ function requestMovieSession() {
 
             searchResults.empty();
 
-            response.result.value.forEach(function (result) {
+            response.forEach(function (result) {
                 var resultDisplay = createSessionResult(result);
 
                 resultDisplay.appendTo(searchResults);

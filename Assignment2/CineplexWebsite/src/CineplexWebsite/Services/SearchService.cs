@@ -20,30 +20,28 @@ namespace CineplexWebsite.Services
             _context = context;
         }
 
-        public async Task<IActionResult> GetSessionsByMovieTitle(string movieTitle)
+        public ICollection<MovieSession> GetSessionsByMovieTitle(string movieTitle)
         {
 
-          var returnedSessions =  from m in _context.Movie
+          var returnedSessionsQuery =  from m in _context.Movie
                 from s in _context.MovieSession.Include(s => s.Movie).Include(s => s.Cineplex)
                                   where m.Title.Contains(movieTitle) &&
                       s.MovieId == m.MovieId
                 select s;
 
-            System.Diagnostics.Debug.WriteLine("success");
-            return new JsonResult(returnedSessions);
+            return returnedSessionsQuery.ToList();
         }
 
-        public async Task<IActionResult> GetSessionsByCinema(string cinema)
+        public ICollection<MovieSession> GetSessionsByCinema(string cinema)
         {
 
-            var returnedSessions = from c in _context.Cineplex
+            var returnedSessionsQuery = from c in _context.Cineplex
                 from s in _context.MovieSession.Include(s => s.Movie).Include(s => s.Cineplex)
                 where c.Location.Contains(cinema) &&
                       c.CineplexId == s.CineplexId
                 select s;
 
-            System.Diagnostics.Debug.WriteLine("success");
-            return new JsonResult(returnedSessions);
+            return returnedSessionsQuery.ToList();
         }
     }
 }
