@@ -11,7 +11,7 @@ namespace CineplexWebsite.Controllers
     [Produces("application/json")]
     public class SearchSessionController : Controller
     {
-        private IMovieSessionRepository _movieSessionRepository;
+        private readonly IMovieSessionRepository _movieSessionRepository;
 
         public SearchSessionController(
             IMovieSessionRepository movieSessionRepository)
@@ -21,7 +21,7 @@ namespace CineplexWebsite.Controllers
 
         [HttpGet]
         [Route("api/SessionSearch/movie/{movieTitle}")]
-        public ActionResult Movie(string movieTitle)
+        public ActionResult SearchByMovieTitle(string movieTitle)
         {
             var sessions = _movieSessionRepository.GetSessionsByMovieTitle(movieTitle);
             return new JsonResult(sessions);
@@ -29,7 +29,7 @@ namespace CineplexWebsite.Controllers
 
         [HttpGet]
         [Route("api/SessionSearch/cinema/{cinemaName}")]
-        public ActionResult Cinema(string cinemaName)
+        public ActionResult SearchByCinemaName(string cinemaName)
         {
             var sessions = _movieSessionRepository.GetSessionsByCinema(cinemaName);
             return new JsonResult(sessions);

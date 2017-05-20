@@ -6,10 +6,12 @@ using CineplexWebsite.Repositories;
 using CineplexWebsite.Repositories.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace CineplexWebsite
 {
@@ -32,6 +34,7 @@ namespace CineplexWebsite
         {
             // Add framework services.
             services.AddMvc();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<Models.CineplexContext>(options => options.UseSqlServer(Configuration["Data:Cineplex:ConnectionString"]));
 
             //use sessions
@@ -41,6 +44,7 @@ namespace CineplexWebsite
             });
             //Setup DI
             services.AddScoped<IMovieSessionRepository, MovieSessionRepository>();
+            services.AddScoped<ISessionRepository, SessionRepository>();
 
             services.AddMvc()
                 .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling =
