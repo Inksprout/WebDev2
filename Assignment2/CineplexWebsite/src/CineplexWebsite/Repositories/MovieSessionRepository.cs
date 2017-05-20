@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using CineplexWebsite.Models;
-using CineplexWebsite.Services.Contracts;
-using Microsoft.AspNetCore.Mvc;
+using CineplexWebsite.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Newtonsoft.Json;
 
-namespace CineplexWebsite.Services
+namespace CineplexWebsite.Repositories
 {
-    public class SearchService : ISearchService
+    public class MovieSessionRepository : IMovieSessionRepository
     {
         private readonly CineplexContext _context;
 
-        public SearchService(CineplexContext context)
+        public MovieSessionRepository(CineplexContext context)
         {
             _context = context;
         }
@@ -24,24 +19,24 @@ namespace CineplexWebsite.Services
         {
 
           var returnedSessionsQuery =  from m in _context.Movie
-                from s in _context.MovieSession.Include(s => s.Movie).Include(s => s.Cineplex)
+                from s in EntityFrameworkQueryableExtensions.Include<MovieSession, Movie>(_context.MovieSession, s => s.Movie).Include(s => s.Cineplex)
                                   where m.Title.Contains(movieTitle) &&
                       s.MovieId == m.MovieId
                 select s;
 
-            return returnedSessionsQuery.ToList();
+            return Enumerable.ToList<MovieSession>(returnedSessionsQuery);
         }
 
         public ICollection<MovieSession> GetSessionsByCinema(string cinema)
         {
 
             var returnedSessionsQuery = from c in _context.Cineplex
-                from s in _context.MovieSession.Include(s => s.Movie).Include(s => s.Cineplex)
+                from s in EntityFrameworkQueryableExtensions.Include<MovieSession, Movie>(_context.MovieSession, s => s.Movie).Include(s => s.Cineplex)
                 where c.Location.Contains(cinema) &&
                       c.CineplexId == s.CineplexId
                 select s;
 
-            return returnedSessionsQuery.ToList();
+            return Enumerable.ToList<MovieSession>(returnedSessionsQuery);
         }
     }
 }

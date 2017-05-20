@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CineplexWebsite.Services;
-using CineplexWebsite.Services.Contracts;
+using CineplexWebsite.Repositories;
+using CineplexWebsite.Repositories.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -40,7 +40,7 @@ namespace CineplexWebsite
                 options.CookieHttpOnly = true;
             });
             //Setup DI
-            services.AddScoped<ISearchService, SearchService>();
+            services.AddScoped<IMovieSessionRepository, MovieSessionRepository>();
 
             services.AddMvc()
                 .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling =

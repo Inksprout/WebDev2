@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CineplexWebsite.Models;
-using CineplexWebsite.Services;
-using CineplexWebsite.Services.Contracts;
+using CineplexWebsite.Repositories;
+using CineplexWebsite.Repositories.Contracts;
 using Moq;
 using Xunit;
 
@@ -12,7 +12,7 @@ namespace CineplexWebsite.Tests.Services
 {
     public class SearchServiceTests
     {
-        private ISearchService _sut;
+        private IMovieSessionRepository _sut;
         private Mock<CineplexContext> _cineplexContextMock;
 
         public SearchServiceTests()
@@ -20,7 +20,7 @@ namespace CineplexWebsite.Tests.Services
             //Setup the mock CineplexContext
             _cineplexContextMock = new Mock<CineplexContext>();
 
-           _sut = new SearchService(_cineplexContextMock.Object);
+           _sut = new MovieSessionRepository(_cineplexContextMock.Object);
         }
 
         [Fact]
