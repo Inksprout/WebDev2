@@ -1,22 +1,9 @@
-﻿@using System.Data
-@model IEnumerable<CineplexWebsite.Models.Cineplex>
+﻿@model IEnumerable<CineplexWebsite.Models.Cineplex>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Movie Plaza Theatre locations</h1>
-
-<div>
-    @foreach (var item in Model)
-    {
-        <h2>@item.Location</h2>
-        <p>@item.ShortDescription</p>
-        <p>@item.LongDescription</p>
-        <img src=/@item.ImageUrl/>
-    }
-</div>
-
-
+<h2>Index</h2>
 <table class="table">
     <tbody>
         @foreach (var item in Model)

@@ -29,7 +29,7 @@ function requestCinemaSession() {
         success: function(response) {
 
             searchResults.empty();
-            response.forEach(function (result) {
+            response.result.value.forEach(function (result) {
                 var resultDisplay = createSessionResult(result);
 
                 resultDisplay.appendTo(searchResults);
@@ -55,7 +55,7 @@ function requestMovieSession() {
 
             searchResults.empty();
 
-            response.forEach(function (result) {
+            response.result.value.forEach(function (result) {
                 var resultDisplay = createSessionResult(result);
 
                 resultDisplay.appendTo(searchResults);
@@ -70,7 +70,7 @@ function requestMovieSession() {
 }
 
 function createSessionResult(sessionData) {
-    console.log(sessionData);
+
     var containingDiv = $("<div />",
         {
             "class": "sessionResult"
@@ -124,7 +124,7 @@ function createSessionResult(sessionData) {
     var button = $("<a/>",
         {
             "class": "button",
-            "href": "/MovieSessions/Details/" + sessionData.movieSessionId,
+            "href": "#",
             text: "Buy Tickets"
         });
 

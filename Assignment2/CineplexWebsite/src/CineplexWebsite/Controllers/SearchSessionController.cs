@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CineplexWebsite.Repositories.Contracts;
+using CineplexWebsite.Services.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,27 +11,27 @@ namespace CineplexWebsite.Controllers
     [Produces("application/json")]
     public class SearchSessionController : Controller
     {
-        private readonly IMovieSessionRepository _movieSessionRepository;
+        private ISearchService _searchService;
 
         public SearchSessionController(
-            IMovieSessionRepository movieSessionRepository)
+            ISearchService searchService)
         {
-            _movieSessionRepository = movieSessionRepository;
+            _searchService = searchService;
         }
 
         [HttpGet]
         [Route("api/SessionSearch/movie/{movieTitle}")]
-        public ActionResult SearchByMovieTitle(string movieTitle)
+        public ActionResult Movie(string movieTitle)
         {
-            var sessions = _movieSessionRepository.GetSessionsByMovieTitle(movieTitle);
+            var sessions = _searchService.GetSessionsByMovieTitle(movieTitle);
             return new JsonResult(sessions);
         }
 
         [HttpGet]
         [Route("api/SessionSearch/cinema/{cinemaName}")]
-        public ActionResult SearchByCinemaName(string cinemaName)
+        public ActionResult Cinema(string cinemaName)
         {
-            var sessions = _movieSessionRepository.GetSessionsByCinema(cinemaName);
+            var sessions = _searchService.GetSessionsByCinema(cinemaName);
             return new JsonResult(sessions);
         }
     }

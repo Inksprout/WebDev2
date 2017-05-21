@@ -3,24 +3,22 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CineplexWebsite</title>
+    <title>@ViewData["Title"] - WebApplication1</title>
 
     <environment names="Development">
         <link href="~/css/customeStyles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
-        <link rel="stylesheet" href="~/css/site.css"/>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
         <link href="~/css/customeStyles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
-  
-    <link rel="stylesheet" href="~/css/jquery.seat-charts.css" />
-    <link rel="stylesheet" href="~/css/checkout.css" />
     <script src="/lib/jquery/dist/jquery.min.js"></script>
+    @Html.Raw(snippet.FullScript)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -32,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">CineplexWebsite</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Cineplex</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -42,9 +40,8 @@
                     <li><a asp-area="" asp-controller="Events" asp-action="Index">Corporate Events</a></li>
                     <li><a asp-area="" asp-controller="MovieSessions" asp-action="Index">Sessions</a></li>
                     <li><a asp-area="" asp-controller="Enquiries" asp-action="Index">Contact Us</a></li>
-                    
-                    <li><a asp-area="" asp-controller="Cart" asp-action="Index">Cart</a></li>
                 </ul>
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </div>
@@ -52,7 +49,6 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - CineplexWebsite</p>
         </footer>
     </div>
 
